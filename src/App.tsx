@@ -19,6 +19,7 @@ const BalloonsContainer = styled.div`
     height: 25%;
     display: flex;
     justify-content: space-between;
+    margin-top: -30px;
   }
 
   .balloons2 {
@@ -41,6 +42,13 @@ const BalloonsContainer = styled.div`
     height: 25%;
     margin-top: -20px;
   }
+
+  .balloons5 {
+    border: 1px solid blue;
+    width: 15%;
+    height: 25%;
+    margin-top: -20px;
+  }
 `;
 
 const HouseContainer = styled.div`
@@ -57,13 +65,29 @@ function App() {
   return (
     <div className="App">
       <BalloonsContainer>
-        <div className="balloons1" />
+        <div className="balloons1">
+          {Array(10)
+            .fill(0)
+            .map((_, i) => (
+              <Balloon key={i} />
+            ))}
+        </div>
 
-        <div className="balloons2" />
+        <div className="balloons2">
+          <Balloon />
+        </div>
 
-        <div className="balloons3" />
+        <div className="balloons3">
+          <Balloon />
+        </div>
 
-        <div className="balloons4" />
+        <div className="balloons4">
+          <Balloon />
+        </div>
+
+        <div className="balloons5">
+          <Balloon />
+        </div>
       </BalloonsContainer>
 
       <HouseContainer>

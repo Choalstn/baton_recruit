@@ -1,10 +1,15 @@
+/* eslint-disable no-plusplus */
 import { styled } from "styled-components";
 
-const BalloonItem = styled.div`
+interface BalloonInter {
+  balloonColor: string;
+}
+
+const BalloonItem = styled.div<BalloonInter>`
   position: fixed;
   width: 100px;
   height: 115px;
-  background: #ffb045;
+  background: ${({ balloonColor }) => balloonColor && balloonColor};
   border-radius: 48% 48% 50% 50%;
 
   &:before {
@@ -14,9 +19,12 @@ const BalloonItem = styled.div`
     left: 43%;
     width: 2px;
     height: 0px;
-    border-left: 10px solid #ffb045;
-    border-right: 10px solid #ffb045;
-    border-bottom: 20px solid #ffb045;
+    border-left: 10px solid
+      ${({ balloonColor }) => balloonColor && balloonColor};
+    border-right: 10px solid
+      ${({ balloonColor }) => balloonColor && balloonColor};
+    border-bottom: 20px solid
+      ${({ balloonColor }) => balloonColor && balloonColor};
     outline: black;
     border-radius: 45% 45% 30% 30%;
     z-index: 1;
@@ -36,9 +44,16 @@ const Rope = styled.div`
 `;
 
 function Balloon() {
+  function getRandomColor() {
+    const colors = ["#cae122", "#ff7aaa", "#ff3e39", "#3413bd"];
+    const randomIndex = Math.floor(Math.random() * colors.length);
+    return colors[randomIndex];
+  }
+
+  const randomColor = getRandomColor();
   return (
     <div>
-      <BalloonItem>
+      <BalloonItem balloonColor={randomColor}>
         <Rope />
       </BalloonItem>
     </div>
