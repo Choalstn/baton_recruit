@@ -1,9 +1,12 @@
-import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import Balloon from "./components/Balloon";
 
 function App() {
-  return <div className="App" />;
+  return (
+    <div className="App">
+      <Balloon />
+    </div>
+  );
 }
 
 export default App;
