@@ -3,6 +3,13 @@ import { styled } from "styled-components";
 
 interface BalloonInter {
   balloonColor: string;
+  idx: number;
+  rotateIdx: number;
+}
+
+interface BalloonProp {
+  idx: number;
+  entire: string;
 }
 
 const BalloonItem = styled.div<BalloonInter>`
@@ -18,6 +25,9 @@ const BalloonItem = styled.div<BalloonInter>`
   border-radius: 48% 48% 50% 50%;
   border: 1.5px solid black;
   opacity: 0.9;
+  transform: rotate(
+    ${({ idx, rotateIdx }) => (idx < rotateIdx ? "-20deg" : "20deg")}
+  );
 
   &:before {
     position: absolute;
@@ -50,7 +60,7 @@ const BalloonItem = styled.div<BalloonInter>`
 //   z-index: 0;
 // `;
 
-function Balloon() {
+function Balloon({ idx, entire }: BalloonProp) {
   const getRandomColor = () => {
     const colors = [
       "#ff7aaa",
@@ -67,10 +77,13 @@ function Balloon() {
   };
 
   const randomColor = getRandomColor();
+  const rotateIdx = Number(entire) / 2;
+
+  console.log(idx, rotateIdx);
 
   return (
     <div>
-      <BalloonItem balloonColor={randomColor} />
+      <BalloonItem balloonColor={randomColor} idx={idx} rotateIdx={rotateIdx} />
     </div>
   );
 }

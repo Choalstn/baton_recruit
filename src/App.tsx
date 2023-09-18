@@ -6,7 +6,6 @@ import HeartBalloon from "./components/HeartBalloon";
 import house from "./assets/house.png";
 
 const BalloonsContainer = styled.div`
-  border: 1px solid red;
   width: 100%;
   height: 100%;
   display: flex;
@@ -14,7 +13,6 @@ const BalloonsContainer = styled.div`
   align-items: center;
 
   .balloons1 {
-    border: 1px solid blue;
     width: 100%;
     height: 25%;
     display: flex;
@@ -23,7 +21,6 @@ const BalloonsContainer = styled.div`
   }
 
   .balloons2 {
-    border: 1px solid blue;
     width: 85%;
     height: 25%;
     display: flex;
@@ -32,7 +29,6 @@ const BalloonsContainer = styled.div`
   }
 
   .balloons3 {
-    border: 1px solid blue;
     width: 70%;
     height: 25%;
     display: flex;
@@ -41,7 +37,6 @@ const BalloonsContainer = styled.div`
   }
 
   .balloons4 {
-    border: 1px solid blue;
     width: 50%;
     height: 25%;
     display: flex;
@@ -50,7 +45,6 @@ const BalloonsContainer = styled.div`
   }
 
   .balloons5 {
-    border: 1px solid blue;
     width: 40%;
     height: 25%;
     display: flex;
@@ -59,8 +53,15 @@ const BalloonsContainer = styled.div`
   }
 
   .balloons6 {
-    border: 1px solid blue;
     width: 30%;
+    height: 25%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -50px;
+  }
+
+  .balloons7 {
+    width: 15%;
     height: 25%;
     display: flex;
     justify-content: space-between;
@@ -86,7 +87,7 @@ function App() {
           {Array(19)
             .fill(0)
             .map((_, i) => (
-              <Balloon key={i} />
+              <Balloon key={i} idx={i} entire="19" />
             ))}
         </div>
 
@@ -94,7 +95,7 @@ function App() {
           {Array(17)
             .fill(0)
             .map((_, i) => (
-              <Balloon key={i} />
+              <Balloon key={i} idx={i} entire="17" />
             ))}
         </div>
 
@@ -102,15 +103,15 @@ function App() {
           {Array(11)
             .fill(0)
             .map((_, i) => (
-              <Balloon key={i} />
+              <Balloon key={i} idx={i} entire="11" />
             ))}
         </div>
 
         <div className="balloons4">
-          {Array(7)
+          {Array(10)
             .fill(0)
             .map((_, i) => (
-              <Balloon key={i} />
+              <Balloon key={i} idx={i} entire="10" />
             ))}
         </div>
 
@@ -118,15 +119,23 @@ function App() {
           {Array(10)
             .fill(0)
             .map((_, i) => (
-              <Balloon key={i} />
+              <Balloon key={i} idx={i} entire="10" />
             ))}
         </div>
 
         <div className="balloons6">
-          {Array(5)
+          {Array(6)
             .fill(0)
             .map((_, i) => (
-              <Balloon key={i} />
+              <Balloon key={i} idx={i} entire="6" />
+            ))}
+        </div>
+
+        <div className="balloons7">
+          {Array(4)
+            .fill(0)
+            .map((_, i) => (
+              <Balloon key={i} idx={i} entire="4" />
             ))}
         </div>
       </BalloonsContainer>
