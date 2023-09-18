@@ -2,8 +2,9 @@
   width: 100vw;
   height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: start;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   background: rgb(2, 195, 252);
   background: linear-gradient(
     0deg,
