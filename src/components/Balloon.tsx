@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable no-plusplus */
 import { styled } from "styled-components";
 
@@ -10,6 +11,7 @@ interface BalloonInter {
 interface BalloonProp {
   idx: number;
   entire: string;
+  last?: boolean;
 }
 
 const BalloonItem = styled.div<BalloonInter>`
@@ -48,19 +50,19 @@ const BalloonItem = styled.div<BalloonInter>`
   }
 `;
 
-// const Rope = styled.div`
-//   background: black;
-//   width: 1.5px;
-//   height: 160px;
-//   left: 56%;
-//   top: 100%;
-//   margin-left: -3px;
-//   position: absolute;
-//   border-radius: 5px;
-//   z-index: 0;
-// `;
+const Rope = styled.div`
+  background: black;
+  width: 1.5px;
+  height: 200px;
+  left: 56%;
+  top: 100%;
+  margin-left: -3px;
+  position: absolute;
+  border-radius: 5px;
+  z-index: 0;
+`;
 
-function Balloon({ idx, entire }: BalloonProp) {
+function Balloon({ idx, entire, last }: BalloonProp) {
   const getRandomColor = () => {
     const colors = [
       "#ff7aaa",
@@ -83,7 +85,9 @@ function Balloon({ idx, entire }: BalloonProp) {
 
   return (
     <div>
-      <BalloonItem balloonColor={randomColor} idx={idx} rotateIdx={rotateIdx} />
+      <BalloonItem balloonColor={randomColor} idx={idx} rotateIdx={rotateIdx}>
+        {last && <Rope />}
+      </BalloonItem>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-boolean-value */
 /* eslint-disable react/no-array-index-key */
 import "./App.css";
 import { styled } from "styled-components";
@@ -75,7 +76,9 @@ const HouseContainer = styled.div`
   justify-content: center;
 
   .houseImg {
-    width: 23%;
+    width: 20%;
+    z-index: 100;
+    margin-left: 100px;
   }
 `;
 
@@ -127,7 +130,7 @@ function App() {
           {Array(6)
             .fill(0)
             .map((_, i) => (
-              <Balloon key={i} idx={i} entire="6" />
+              <Balloon key={i} idx={i} entire="6" last={true} />
             ))}
         </div>
 
@@ -135,7 +138,7 @@ function App() {
           {Array(4)
             .fill(0)
             .map((_, i) => (
-              <Balloon key={i} idx={i} entire="4" />
+              <Balloon key={i} idx={i} entire="4" last={true} />
             ))}
         </div>
       </BalloonsContainer>
