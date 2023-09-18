@@ -26,28 +26,45 @@ const BalloonsContainer = styled.div`
     border: 1px solid blue;
     width: 85%;
     height: 25%;
-    margin-top: -20px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -50px;
   }
 
   .balloons3 {
     border: 1px solid blue;
     width: 70%;
     height: 25%;
-    margin-top: -20px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -50px;
   }
 
   .balloons4 {
     border: 1px solid blue;
-    width: 30%;
+    width: 50%;
     height: 25%;
-    margin-top: -20px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -50px;
   }
 
   .balloons5 {
     border: 1px solid blue;
-    width: 15%;
+    width: 40%;
     height: 25%;
-    margin-top: -20px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -50px;
+  }
+
+  .balloons6 {
+    border: 1px solid blue;
+    width: 30%;
+    height: 25%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: -50px;
   }
 `;
 
@@ -66,7 +83,7 @@ function App() {
     <div className="App">
       <BalloonsContainer>
         <div className="balloons1">
-          {Array(10)
+          {Array(19)
             .fill(0)
             .map((_, i) => (
               <Balloon key={i} />
@@ -74,19 +91,43 @@ function App() {
         </div>
 
         <div className="balloons2">
-          <Balloon />
+          {Array(17)
+            .fill(0)
+            .map((_, i) => (
+              <Balloon key={i} />
+            ))}
         </div>
 
         <div className="balloons3">
-          <Balloon />
+          {Array(11)
+            .fill(0)
+            .map((_, i) => (
+              <Balloon key={i} />
+            ))}
         </div>
 
         <div className="balloons4">
-          <Balloon />
+          {Array(7)
+            .fill(0)
+            .map((_, i) => (
+              <Balloon key={i} />
+            ))}
         </div>
 
         <div className="balloons5">
-          <Balloon />
+          {Array(10)
+            .fill(0)
+            .map((_, i) => (
+              <Balloon key={i} />
+            ))}
+        </div>
+
+        <div className="balloons6">
+          {Array(5)
+            .fill(0)
+            .map((_, i) => (
+              <Balloon key={i} />
+            ))}
         </div>
       </BalloonsContainer>
 

@@ -10,7 +10,14 @@ const BalloonItem = styled.div<BalloonInter>`
   width: 100px;
   height: 115px;
   background: ${({ balloonColor }) => balloonColor && balloonColor};
+  background-image: linear-gradient(
+    150deg,
+    #e6e6e6 2%,
+    ${({ balloonColor }) => balloonColor && balloonColor} 20%
+  );
   border-radius: 48% 48% 50% 50%;
+  border: 1.5px solid black;
+  opacity: 0.9;
 
   &:before {
     position: absolute;
@@ -31,31 +38,39 @@ const BalloonItem = styled.div<BalloonInter>`
   }
 `;
 
-const Rope = styled.div`
-  background: black;
-  width: 1.5px;
-  height: 160px;
-  left: 56%;
-  top: 100%;
-  margin-left: -3px;
-  position: absolute;
-  border-radius: 5px;
-  z-index: 0;
-`;
+// const Rope = styled.div`
+//   background: black;
+//   width: 1.5px;
+//   height: 160px;
+//   left: 56%;
+//   top: 100%;
+//   margin-left: -3px;
+//   position: absolute;
+//   border-radius: 5px;
+//   z-index: 0;
+// `;
 
 function Balloon() {
-  function getRandomColor() {
-    const colors = ["#cae122", "#ff7aaa", "#ff3e39", "#3413bd"];
+  const getRandomColor = () => {
+    const colors = [
+      "#ff7aaa",
+      "#ff3e39",
+      "#3413bd",
+      "#6b13bd",
+      "#a8ff7a",
+      "#2ed077",
+      "#d9e67a",
+      "#7adde6",
+    ];
     const randomIndex = Math.floor(Math.random() * colors.length);
     return colors[randomIndex];
-  }
+  };
 
   const randomColor = getRandomColor();
+
   return (
     <div>
-      <BalloonItem balloonColor={randomColor}>
-        <Rope />
-      </BalloonItem>
+      <BalloonItem balloonColor={randomColor} />
     </div>
   );
 }
