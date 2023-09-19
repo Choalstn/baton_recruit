@@ -1,11 +1,14 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable no-plusplus */
+import { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 
 interface BalloonInter {
   balloonColor: string;
   idx: number;
   rotateIdx: number;
+  halfWidth: number;
+  xCoord: number | null;
 }
 
 interface BalloonProp {
@@ -28,7 +31,7 @@ const BalloonItem = styled.div<BalloonInter>`
   border: 1.5px solid black;
   opacity: 0.9;
   transform: rotateZ(
-    ${({ idx, rotateIdx }) => (idx < rotateIdx ? "-20deg" : "20deg")}
+    ${({ halfWidth, xCoord }) => (xCoord! < halfWidth ? "-20deg" : "20deg")}
   );
 
   &:before {
@@ -63,6 +66,9 @@ const Rope = styled.div`
 `;
 
 function Balloon({ idx, entire, last }: BalloonProp) {
+  const [xCoord, setXCoord] = useState<number | null>(null);
+  const elementRef = useRef<HTMLDivElement | null>(null);
+
   const getRandomColor = () => {
     const colors = [
       "#ff7aaa",
@@ -78,14 +84,28 @@ function Balloon({ idx, entire, last }: BalloonProp) {
     return colors[randomIndex];
   };
 
+  useEffect(() => {
+    const element = elementRef.current;
+    if (element) {
+      const rect = element.getBoundingClientRect();
+      setXCoord(rect.left);
+    }
+  }, [[]]);
+
   const randomColor = getRandomColor();
   const rotateIdx = Number(entire) / 2;
-
-  console.log(idx, rotateIdx);
+  const halfWidth = window.innerWidth / 2;
 
   return (
     <div>
-      <BalloonItem balloonColor={randomColor} idx={idx} rotateIdx={rotateIdx}>
+      <BalloonItem
+        ref={elementRef}
+        balloonColor={randomColor}
+        halfWidth={halfWidth}
+        xCoord={xCoord}
+        idx={idx}
+        rotateIdx={rotateIdx}
+      >
         {last && <Rope />}
       </BalloonItem>
     </div>
