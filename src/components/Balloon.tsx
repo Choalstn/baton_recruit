@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
 import {
   getRandomColor,
-  getRandomLocaTop,
-  getRandomLocaLeft,
+  getRandomBalloonTop,
+  getRandomBalloonLeft,
 } from "../utill/getRandom";
 
 interface BalloonInter {
@@ -24,8 +24,8 @@ interface BalloonProp {
 
 const BalloonItem = styled.div<BalloonInter>`
   position: ${({ isAdd }) => isAdd && "relative"};
-  top: ${({ isAdd, top }) => isAdd && `${top}%`};
-  left: ${({ isAdd, left }) => isAdd && `${left + 20}%`};
+  top: ${({ isAdd, top }) => isAdd && `${top - 10}%`};
+  left: ${({ isAdd, left }) => isAdd && `${left}%`};
   position: fixed;
   width: 100px;
   height: 115px;
@@ -75,8 +75,8 @@ const Rope = styled.div`
 
 function Balloon({ last, isAdd }: BalloonProp) {
   const [xCoord, setXCoord] = useState<number | null>(null);
-  const [top] = useState(getRandomLocaTop());
-  const [left] = useState(getRandomLocaLeft());
+  const [top] = useState(getRandomBalloonTop());
+  const [left] = useState(getRandomBalloonLeft());
   const [randomColor] = useState(getRandomColor());
   const elementRef = useRef<HTMLDivElement | null>(null);
 

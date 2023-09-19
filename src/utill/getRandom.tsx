@@ -20,7 +20,19 @@ export const getRandomLocaTop = () => {
 };
 
 export const getRandomLocaLeft = () => {
-  const leftLoca = Math.floor(Math.random() * 50) + 1;
+  const leftLoca = Math.floor(Math.random() * 50) + 10;
+
+  return leftLoca;
+};
+
+export const getRandomBalloonTop = () => {
+  const topLoca = Math.floor(Math.random() * 81) + 5;
+
+  return topLoca;
+};
+
+export const getRandomBalloonLeft = () => {
+  const leftLoca = Math.floor(Math.random() * 81) + 5;
 
   return leftLoca;
 };
