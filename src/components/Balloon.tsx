@@ -27,7 +27,7 @@ const BalloonItem = styled.div<BalloonInter>`
   border-radius: 48% 48% 50% 50%;
   border: 1.5px solid black;
   opacity: 0.9;
-  transform: rotate(
+  transform: rotateZ(
     ${({ idx, rotateIdx }) => (idx < rotateIdx ? "-20deg" : "20deg")}
   );
 

@@ -5,6 +5,7 @@ import { styled } from "styled-components";
 import Balloon from "./components/Balloon";
 import HeartBalloon from "./components/HeartBalloon";
 import house from "./assets/house.png";
+import Cloud from "./components/Cloud";
 
 const BalloonsContainer = styled.div`
   width: 100%;
@@ -82,9 +83,26 @@ const HouseContainer = styled.div`
   }
 `;
 
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+`;
+
 function App() {
   return (
     <div className="App">
+      <Overlay>
+        {Array(16)
+          .fill(0)
+          .map((_, i) => (
+            <Cloud key={i} />
+          ))}
+      </Overlay>
+
       <div className="container">
         <BalloonsContainer>
           <div className="balloons1">
