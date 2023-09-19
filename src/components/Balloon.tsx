@@ -2,18 +2,15 @@
 /* eslint-disable no-plusplus */
 import { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
+import { getRandomColor } from "../utill/getRandom";
 
 interface BalloonInter {
   balloonColor: string;
-  idx: number;
-  rotateIdx: number;
   halfWidth: number;
   xCoord: number | null;
 }
 
 interface BalloonProp {
-  idx: number;
-  entire: string;
   last?: boolean;
 }
 
@@ -65,24 +62,25 @@ const Rope = styled.div`
   z-index: 0;
 `;
 
-function Balloon({ idx, entire, last }: BalloonProp) {
+function Balloon({ last }: BalloonProp) {
   const [xCoord, setXCoord] = useState<number | null>(null);
+  const [randomColor] = useState(getRandomColor());
   const elementRef = useRef<HTMLDivElement | null>(null);
 
-  const getRandomColor = () => {
-    const colors = [
-      "#ff7aaa",
-      "#ff3e39",
-      "#3413bd",
-      "#6b13bd",
-      "#a8ff7a",
-      "#2ed077",
-      "#d9e67a",
-      "#7adde6",
-    ];
-    const randomIndex = Math.floor(Math.random() * colors.length);
-    return colors[randomIndex];
-  };
+  //   const getRandomColor = () => {
+  //     const colors = [
+  //       "#ff7aaa",
+  //       "#ff3e39",
+  //       "#3413bd",
+  //       "#6b13bd",
+  //       "#a8ff7a",
+  //       "#2ed077",
+  //       "#d9e67a",
+  //       "#7adde6",
+  //     ];
+  //     const randomIndex = Math.floor(Math.random() * colors.length);
+  //     return colors[randomIndex];
+  //   };
 
   useEffect(() => {
     const element = elementRef.current;
@@ -92,8 +90,6 @@ function Balloon({ idx, entire, last }: BalloonProp) {
     }
   }, [[]]);
 
-  const randomColor = getRandomColor();
-  const rotateIdx = Number(entire) / 2;
   const halfWidth = window.innerWidth / 2;
 
   return (
@@ -103,8 +99,6 @@ function Balloon({ idx, entire, last }: BalloonProp) {
         balloonColor={randomColor}
         halfWidth={halfWidth}
         xCoord={xCoord}
-        idx={idx}
-        rotateIdx={rotateIdx}
       >
         {last && <Rope />}
       </BalloonItem>

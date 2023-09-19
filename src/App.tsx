@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/jsx-boolean-value */
 /* eslint-disable react/no-array-index-key */
 import "./App.css";
 import { styled } from "styled-components";
+import { useState } from "react";
 import Balloon from "./components/Balloon";
 import HeartBalloon from "./components/HeartBalloon";
 import house from "./assets/house.png";
@@ -93,6 +95,13 @@ const Overlay = styled.div`
 `;
 
 function App() {
+  const [addBalloon, setAddBalloon] = useState(0);
+
+  const handleAddBalloon = () => {
+    setAddBalloon(addBalloon + 1);
+    console.log("실행");
+  };
+
   return (
     <div className="App">
       <Overlay>
@@ -100,6 +109,12 @@ function App() {
           .fill(0)
           .map((_, i) => (
             <Cloud key={i} />
+          ))}
+
+        {Array(addBalloon)
+          .fill(0)
+          .map((_, i) => (
+            <Balloon key={i} />
           ))}
       </Overlay>
 
@@ -109,7 +124,7 @@ function App() {
             {Array(19)
               .fill(0)
               .map((_, i) => (
-                <Balloon key={i} idx={i} entire="19" />
+                <Balloon key={i} />
               ))}
           </div>
 
@@ -117,7 +132,7 @@ function App() {
             {Array(17)
               .fill(0)
               .map((_, i) => (
-                <Balloon key={i} idx={i} entire="17" />
+                <Balloon key={i} />
               ))}
           </div>
 
@@ -125,7 +140,7 @@ function App() {
             {Array(11)
               .fill(0)
               .map((_, i) => (
-                <Balloon key={i} idx={i} entire="11" />
+                <Balloon key={i} />
               ))}
           </div>
 
@@ -133,7 +148,7 @@ function App() {
             {Array(10)
               .fill(0)
               .map((_, i) => (
-                <Balloon key={i} idx={i} entire="10" />
+                <Balloon key={i} />
               ))}
           </div>
 
@@ -141,7 +156,7 @@ function App() {
             {Array(10)
               .fill(0)
               .map((_, i) => (
-                <Balloon key={i} idx={i} entire="10" />
+                <Balloon key={i} />
               ))}
           </div>
 
@@ -149,7 +164,7 @@ function App() {
             {Array(6)
               .fill(0)
               .map((_, i) => (
-                <Balloon key={i} idx={i} entire="6" last={true} />
+                <Balloon key={i} last={true} />
               ))}
           </div>
 
@@ -157,13 +172,18 @@ function App() {
             {Array(4)
               .fill(0)
               .map((_, i) => (
-                <Balloon key={i} idx={i} entire="4" last={true} />
+                <Balloon key={i} last={true} />
               ))}
           </div>
         </BalloonsContainer>
 
         <HouseContainer>
-          <img src={house} alt="집 이미지" className="houseImg" />
+          <img
+            src={house}
+            alt="집 이미지"
+            className="houseImg"
+            onClick={handleAddBalloon}
+          />
         </HouseContainer>
       </div>
     </div>
