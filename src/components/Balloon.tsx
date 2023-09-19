@@ -96,7 +96,12 @@ function Balloon({ last, isAdd }: BalloonProp) {
   const [top] = useState(getRandomBalloonTop());
   const [left] = useState(getRandomBalloonLeft());
   const [randomColor] = useState(getRandomColor());
+  const [isShow, setIsShow] = useState(true);
   const elementRef = useRef<HTMLDivElement | null>(null);
+
+  const handleDelete = () => {
+    setIsShow(!isShow);
+  };
 
   useEffect(() => {
     const element = elementRef.current;
@@ -110,17 +115,20 @@ function Balloon({ last, isAdd }: BalloonProp) {
 
   return (
     <div>
-      <BalloonItem
-        ref={elementRef}
-        balloonColor={randomColor}
-        halfWidth={halfWidth}
-        xCoord={xCoord}
-        isAdd={isAdd}
-        top={top}
-        left={left}
-      >
-        {last && <Rope />}
-      </BalloonItem>
+      {isShow && (
+        <BalloonItem
+          ref={elementRef}
+          balloonColor={randomColor}
+          halfWidth={halfWidth}
+          xCoord={xCoord}
+          isAdd={isAdd}
+          top={top}
+          left={left}
+          onClick={handleDelete}
+        >
+          {last && <Rope />}
+        </BalloonItem>
+      )}
     </div>
   );
 }
