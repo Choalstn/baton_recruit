@@ -99,7 +99,6 @@ function App() {
 
   const handleAddBalloon = () => {
     setAddBalloon(addBalloon + 1);
-    console.log("실행");
   };
 
   return (
@@ -110,15 +109,14 @@ function App() {
           .map((_, i) => (
             <Cloud key={i} />
           ))}
-
-        {Array(addBalloon)
-          .fill(0)
-          .map((_, i) => (
-            <Balloon key={i} />
-          ))}
       </Overlay>
 
       <div className="container">
+        {addBalloon > 0 &&
+          Array(addBalloon)
+            .fill(0)
+            .map((_, i) => <Balloon key={i} isAdd={true} />)}
+
         <BalloonsContainer>
           <div className="balloons1">
             {Array(19)

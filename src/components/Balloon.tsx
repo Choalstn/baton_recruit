@@ -2,19 +2,30 @@
 /* eslint-disable no-plusplus */
 import { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
-import { getRandomColor } from "../utill/getRandom";
+import {
+  getRandomColor,
+  getRandomLocaTop,
+  getRandomLocaLeft,
+} from "../utill/getRandom";
 
 interface BalloonInter {
   balloonColor: string;
   halfWidth: number;
   xCoord: number | null;
+  isAdd: boolean | undefined;
+  top: number;
+  left: number;
 }
 
 interface BalloonProp {
   last?: boolean;
+  isAdd?: boolean;
 }
 
 const BalloonItem = styled.div<BalloonInter>`
+  position: ${({ isAdd }) => isAdd && "relative"};
+  top: ${({ isAdd, top }) => isAdd && `${top}%`};
+  left: ${({ isAdd, left }) => isAdd && `${left + 20}%`};
   position: fixed;
   width: 100px;
   height: 115px;
@@ -62,25 +73,12 @@ const Rope = styled.div`
   z-index: 0;
 `;
 
-function Balloon({ last }: BalloonProp) {
+function Balloon({ last, isAdd }: BalloonProp) {
   const [xCoord, setXCoord] = useState<number | null>(null);
+  const [top] = useState(getRandomLocaTop());
+  const [left] = useState(getRandomLocaLeft());
   const [randomColor] = useState(getRandomColor());
   const elementRef = useRef<HTMLDivElement | null>(null);
-
-  //   const getRandomColor = () => {
-  //     const colors = [
-  //       "#ff7aaa",
-  //       "#ff3e39",
-  //       "#3413bd",
-  //       "#6b13bd",
-  //       "#a8ff7a",
-  //       "#2ed077",
-  //       "#d9e67a",
-  //       "#7adde6",
-  //     ];
-  //     const randomIndex = Math.floor(Math.random() * colors.length);
-  //     return colors[randomIndex];
-  //   };
 
   useEffect(() => {
     const element = elementRef.current;
@@ -99,6 +97,9 @@ function Balloon({ last }: BalloonProp) {
         balloonColor={randomColor}
         halfWidth={halfWidth}
         xCoord={xCoord}
+        isAdd={isAdd}
+        top={top}
+        left={left}
       >
         {last && <Rope />}
       </BalloonItem>
