@@ -8,24 +8,10 @@ import house from "./assets/house.png";
 
 const BalloonsContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  animation: floatAnimation 3s ease-in-out infinite;
-
-  @keyframes floatAnimation {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-8px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
 
   .balloons1 {
     width: 100%;
@@ -99,67 +85,69 @@ const HouseContainer = styled.div`
 function App() {
   return (
     <div className="App">
-      <BalloonsContainer>
-        <div className="balloons1">
-          {Array(19)
-            .fill(0)
-            .map((_, i) => (
-              <Balloon key={i} idx={i} entire="19" />
-            ))}
-        </div>
+      <div className="container">
+        <BalloonsContainer>
+          <div className="balloons1">
+            {Array(19)
+              .fill(0)
+              .map((_, i) => (
+                <Balloon key={i} idx={i} entire="19" />
+              ))}
+          </div>
 
-        <div className="balloons2">
-          {Array(17)
-            .fill(0)
-            .map((_, i) => (
-              <Balloon key={i} idx={i} entire="17" />
-            ))}
-        </div>
+          <div className="balloons2">
+            {Array(17)
+              .fill(0)
+              .map((_, i) => (
+                <Balloon key={i} idx={i} entire="17" />
+              ))}
+          </div>
 
-        <div className="balloons3">
-          {Array(11)
-            .fill(0)
-            .map((_, i) => (
-              <Balloon key={i} idx={i} entire="11" />
-            ))}
-        </div>
+          <div className="balloons3">
+            {Array(11)
+              .fill(0)
+              .map((_, i) => (
+                <Balloon key={i} idx={i} entire="11" />
+              ))}
+          </div>
 
-        <div className="balloons4">
-          {Array(10)
-            .fill(0)
-            .map((_, i) => (
-              <Balloon key={i} idx={i} entire="10" />
-            ))}
-        </div>
+          <div className="balloons4">
+            {Array(10)
+              .fill(0)
+              .map((_, i) => (
+                <Balloon key={i} idx={i} entire="10" />
+              ))}
+          </div>
 
-        <div className="balloons5">
-          {Array(10)
-            .fill(0)
-            .map((_, i) => (
-              <Balloon key={i} idx={i} entire="10" />
-            ))}
-        </div>
+          <div className="balloons5">
+            {Array(10)
+              .fill(0)
+              .map((_, i) => (
+                <Balloon key={i} idx={i} entire="10" />
+              ))}
+          </div>
 
-        <div className="balloons6">
-          {Array(6)
-            .fill(0)
-            .map((_, i) => (
-              <Balloon key={i} idx={i} entire="6" last={true} />
-            ))}
-        </div>
+          <div className="balloons6">
+            {Array(6)
+              .fill(0)
+              .map((_, i) => (
+                <Balloon key={i} idx={i} entire="6" last={true} />
+              ))}
+          </div>
 
-        <div className="balloons7">
-          {Array(4)
-            .fill(0)
-            .map((_, i) => (
-              <Balloon key={i} idx={i} entire="4" last={true} />
-            ))}
-        </div>
-      </BalloonsContainer>
+          <div className="balloons7">
+            {Array(4)
+              .fill(0)
+              .map((_, i) => (
+                <Balloon key={i} idx={i} entire="4" last={true} />
+              ))}
+          </div>
+        </BalloonsContainer>
 
-      <HouseContainer>
-        <img src={house} alt="집 이미지" className="houseImg" />
-      </HouseContainer>
+        <HouseContainer>
+          <img src={house} alt="집 이미지" className="houseImg" />
+        </HouseContainer>
+      </div>
     </div>
   );
 }
