@@ -13,6 +13,20 @@ const BalloonsContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
+  animation: floatAnimation 3s ease-in-out infinite;
+
+  @keyframes floatAnimation {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
   .balloons1 {
     width: 100%;
     height: 25%;

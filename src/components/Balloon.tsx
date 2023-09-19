@@ -21,7 +21,7 @@ const BalloonItem = styled.div<BalloonInter>`
   background: ${({ balloonColor }) => balloonColor && balloonColor};
   background-image: linear-gradient(
     150deg,
-    #e6e6e6 2%,
+    #e6e6e6 10%,
     ${({ balloonColor }) => balloonColor && balloonColor} 20%
   );
   border-radius: 48% 48% 50% 50%;
@@ -53,7 +53,7 @@ const BalloonItem = styled.div<BalloonInter>`
 const Rope = styled.div`
   background: black;
   width: 1.5px;
-  height: 200px;
+  height: 240px;
   left: 56%;
   top: 100%;
   margin-left: -3px;
