@@ -1,7 +1,9 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable react/require-default-props */
 /* eslint-disable no-plusplus */
 import { useEffect, useRef, useState } from "react";
-import { styled } from "styled-components";
+import { styled, keyframes, css } from "styled-components";
 import {
   getRandomColor,
   getRandomBalloonTop,
@@ -22,10 +24,21 @@ interface BalloonProp {
   isAdd?: boolean;
 }
 
+const Up = (top: number, left: number) => keyframes`
+  from {
+    top : 100%;
+  }
+  to {
+    top : ${top - 10};
+    left : ${left + 10};
+  }
+`;
+
 const BalloonItem = styled.div<BalloonInter>`
   position: ${({ isAdd }) => isAdd && "relative"};
   top: ${({ isAdd, top }) => isAdd && `${top - 10}%`};
-  left: ${({ isAdd, left }) => isAdd && `${left}%`};
+  left: ${({ isAdd, left }) => isAdd && `${left + 10}%`};
+  bottom: ${({ isAdd }) => isAdd && `-50%`};
   position: fixed;
   width: 100px;
   height: 115px;
@@ -41,6 +54,11 @@ const BalloonItem = styled.div<BalloonInter>`
   transform: rotateZ(
     ${({ halfWidth, xCoord }) => (xCoord! < halfWidth ? "-20deg" : "20deg")}
   );
+  animation: ${({ isAdd, top, left }) =>
+    isAdd &&
+    css`
+      ${Up(top, left)} 5s ease-in-out;
+    `};
 
   &:before {
     position: absolute;
