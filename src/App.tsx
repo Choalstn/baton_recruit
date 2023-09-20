@@ -3,9 +3,9 @@
 /* eslint-disable react/no-array-index-key */
 import "./App.css";
 import { styled } from "styled-components";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Balloon from "./components/Balloon";
-import HeartBalloon from "./components/HeartBalloon";
+
 import house from "./assets/house.png";
 import Cloud from "./components/Cloud";
 
