@@ -17,11 +17,15 @@ interface BalloonInter {
   isAdd: boolean | undefined;
   top: number;
   left: number;
+  isFly: boolean;
 }
 
 interface BalloonProp {
   last?: boolean;
   isAdd?: boolean;
+  balloonNum: number;
+  handleBalloon: (number: number) => void;
+  isFly: boolean;
 }
 
 const Up = (top: number, left: number) => keyframes`
@@ -60,6 +64,14 @@ const BalloonItem = styled.div<BalloonInter>`
     css`
       ${Up(top, left)} 5s ease-in-out;
     `};
+  animation: ${({ isFly, isAdd }) =>
+    isAdd && isFly && `fly 4s ease-in-out forwards`};
+
+  @keyframes fly {
+    to {
+      transform: translateY(-1000%);
+    }
+  }
   z-index: ${({ isAdd }) => isAdd && "1"};
 
   &:before {
@@ -93,7 +105,13 @@ const Rope = styled.div`
   z-index: -10;
 `;
 
-function Balloon({ last, isAdd }: BalloonProp) {
+function Balloon({
+  last,
+  isAdd,
+  balloonNum,
+  handleBalloon,
+  isFly,
+}: BalloonProp) {
   const [xCoord, setXCoord] = useState<number | null>(null);
   const [top] = useState(getRandomBalloonTop());
   const [left] = useState(getRandomBalloonLeft());
@@ -101,7 +119,9 @@ function Balloon({ last, isAdd }: BalloonProp) {
   const [isShow, setIsShow] = useState(true);
   const elementRef = useRef<HTMLDivElement | null>(null);
 
-  const handleDelete = () => {
+  const handleDelete = (number: number) => {
+    handleBalloon(number);
+
     setIsShow(!isShow);
   };
 
@@ -124,9 +144,10 @@ function Balloon({ last, isAdd }: BalloonProp) {
           halfWidth={halfWidth}
           xCoord={xCoord}
           isAdd={isAdd}
+          isFly={isFly}
           top={top}
           left={left}
-          onClick={handleDelete}
+          onClick={() => handleDelete(balloonNum)}
         >
           {last && <Rope />}
         </BalloonItem>

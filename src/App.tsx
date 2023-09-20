@@ -9,12 +9,23 @@ import HeartBalloon from "./components/HeartBalloon";
 import house from "./assets/house.png";
 import Cloud from "./components/Cloud";
 
-const BalloonsContainer = styled.div`
+interface FlyInter {
+  isFly: boolean;
+}
+
+const BalloonsContainer = styled.div<FlyInter>`
   width: 100%;
   height: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: ${({ isFly }) => isFly && `fly 4s ease-in-out forwards`};
+
+  @keyframes fly {
+    to {
+      transform: translateY(-1000%);
+    }
+  }
 
   .balloons1 {
     width: 100%;
@@ -73,7 +84,7 @@ const BalloonsContainer = styled.div`
   }
 `;
 
-const HouseContainer = styled.div`
+const HouseContainer = styled.div<FlyInter>`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -83,6 +94,13 @@ const HouseContainer = styled.div`
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
   z-index: 2;
+  animation: ${({ isFly }) => isFly && `drop 4s ease-in-out forwards`};
+
+  @keyframes drop {
+    to {
+      transform: translateY(800%);
+    }
+  }
 
   @keyframes shake {
     0%,
@@ -113,9 +131,25 @@ const Overlay = styled.div`
 
 function App() {
   const [addBalloon, setAddBalloon] = useState(0);
+  const [isFly, setIsFly] = useState(false);
 
   const handleAddBalloon = () => {
     setAddBalloon(addBalloon + 1);
+  };
+
+  const number6 = Array(6).fill(0);
+  const number7 = Array(4).fill(0);
+
+  const handleBalloonPop = (number: number) => {
+    if (number === 6) {
+      number6.pop();
+    } else if (number === 7) {
+      number7.pop();
+    }
+
+    if (number6.length === 0 && number7.length === 0) {
+      setIsFly(true);
+    }
   };
 
   return (
@@ -128,14 +162,27 @@ function App() {
         {addBalloon > 0 &&
           Array(addBalloon)
             .fill(0)
-            .map((_, i) => <Balloon key={i} isAdd={true} />)}
+            .map((_, i) => (
+              <Balloon
+                key={i}
+                isAdd={true}
+                balloonNum={0}
+                handleBalloon={handleBalloonPop}
+                isFly={isFly}
+              />
+            ))}
 
-        <BalloonsContainer>
+        <BalloonsContainer isFly={isFly}>
           <div className="balloons1">
             {Array(19)
               .fill(0)
               .map((_, i) => (
-                <Balloon key={i} />
+                <Balloon
+                  key={i}
+                  balloonNum={1}
+                  handleBalloon={handleBalloonPop}
+                  isFly={isFly}
+                />
               ))}
           </div>
 
@@ -143,7 +190,12 @@ function App() {
             {Array(17)
               .fill(0)
               .map((_, i) => (
-                <Balloon key={i} />
+                <Balloon
+                  key={i}
+                  balloonNum={2}
+                  handleBalloon={handleBalloonPop}
+                  isFly={isFly}
+                />
               ))}
           </div>
 
@@ -151,7 +203,12 @@ function App() {
             {Array(11)
               .fill(0)
               .map((_, i) => (
-                <Balloon key={i} />
+                <Balloon
+                  key={i}
+                  balloonNum={3}
+                  handleBalloon={handleBalloonPop}
+                  isFly={isFly}
+                />
               ))}
           </div>
 
@@ -159,7 +216,12 @@ function App() {
             {Array(10)
               .fill(0)
               .map((_, i) => (
-                <Balloon key={i} />
+                <Balloon
+                  key={i}
+                  balloonNum={4}
+                  handleBalloon={handleBalloonPop}
+                  isFly={isFly}
+                />
               ))}
           </div>
 
@@ -167,7 +229,12 @@ function App() {
             {Array(10)
               .fill(0)
               .map((_, i) => (
-                <Balloon key={i} />
+                <Balloon
+                  key={i}
+                  balloonNum={5}
+                  handleBalloon={handleBalloonPop}
+                  isFly={isFly}
+                />
               ))}
           </div>
 
@@ -175,7 +242,13 @@ function App() {
             {Array(6)
               .fill(0)
               .map((_, i) => (
-                <Balloon key={i} last={true} />
+                <Balloon
+                  key={i}
+                  last={true}
+                  balloonNum={6}
+                  handleBalloon={handleBalloonPop}
+                  isFly={isFly}
+                />
               ))}
           </div>
 
@@ -183,12 +256,18 @@ function App() {
             {Array(4)
               .fill(0)
               .map((_, i) => (
-                <Balloon key={i} last={true} />
+                <Balloon
+                  key={i}
+                  last={true}
+                  balloonNum={7}
+                  handleBalloon={handleBalloonPop}
+                  isFly={isFly}
+                />
               ))}
           </div>
         </BalloonsContainer>
 
-        <HouseContainer>
+        <HouseContainer isFly={isFly}>
           <img
             src={house}
             alt="집 이미지"
