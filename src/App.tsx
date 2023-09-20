@@ -19,11 +19,12 @@ const BalloonsContainer = styled.div<FlyInter>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: ${({ isFly }) => isFly && `fly 4s ease-in-out forwards`};
+  animation: ${({ isFly }) => isFly && `fly 5s ease-in-out forwards`};
 
   @keyframes fly {
     to {
-      transform: translateY(-1000%);
+      transform: translateY(-100px);
+      opacity: 0;
     }
   }
 
@@ -94,11 +95,11 @@ const HouseContainer = styled.div<FlyInter>`
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
   z-index: 2;
-  animation: ${({ isFly }) => isFly && `drop 4s ease-in-out forwards`};
+  animation: ${({ isFly }) => isFly && `drop 3s ease-in-out forwards`};
 
   @keyframes drop {
     to {
-      transform: translateY(800%);
+      transform: translateY(100%);
     }
   }
 

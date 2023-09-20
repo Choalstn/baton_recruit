@@ -64,12 +64,14 @@ const BalloonItem = styled.div<BalloonInter>`
     css`
       ${Up(top, left)} 5s ease-in-out;
     `};
-  animation: ${({ isFly, isAdd }) =>
-    isAdd && isFly && `fly 4s ease-in-out forwards`};
+  animation: ${({ isFly }) => isFly && `fly 5s ease-in-out forwards`};
 
   @keyframes fly {
-    to {
-      transform: translateY(-1000%);
+    0% {
+      transform: translateY(0) scale(1);
+    }
+    100% {
+      transform: translateY(-100px) scale(0);
     }
   }
   z-index: ${({ isAdd }) => isAdd && "1"};
