@@ -42,6 +42,7 @@ const BalloonItem = styled.div<BalloonInter>`
   position: fixed;
   width: 100px;
   height: 115px;
+  cursor: pointer;
   background: ${({ balloonColor }) => balloonColor && balloonColor};
   background-image: linear-gradient(
     150deg,
@@ -59,6 +60,7 @@ const BalloonItem = styled.div<BalloonInter>`
     css`
       ${Up(top, left)} 5s ease-in-out;
     `};
+  z-index: ${({ isAdd }) => isAdd && "1"};
 
   &:before {
     position: absolute;
@@ -88,7 +90,7 @@ const Rope = styled.div`
   margin-left: -3px;
   position: absolute;
   border-radius: 5px;
-  z-index: 0;
+  z-index: -10;
 `;
 
 function Balloon({ last, isAdd }: BalloonProp) {

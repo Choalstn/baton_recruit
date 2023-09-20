@@ -15,7 +15,7 @@ const CloudStyle = styled.img<CloudInter>`
   position: relative;
   top: ${({ top }) => (top ? ` ${top}%` : "-20px")};
   z-index: 0;
-  left: ${({ left }) => left && ` ${left - 10}%`};
+  left: ${({ left }) => left && ` ${left - 20}%`};
   animation: moveClouds 10s linear infinite;
   opacity: 0.8;
 

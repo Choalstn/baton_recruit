@@ -3,7 +3,7 @@
 /* eslint-disable react/no-array-index-key */
 import "./App.css";
 import { styled } from "styled-components";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Balloon from "./components/Balloon";
 import HeartBalloon from "./components/HeartBalloon";
 import house from "./assets/house.png";
@@ -82,6 +82,7 @@ const HouseContainer = styled.div`
   animation-duration: 5s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
+  z-index: 2;
 
   @keyframes shake {
     0%,
@@ -95,7 +96,7 @@ const HouseContainer = styled.div`
 
   .houseImg {
     width: 20%;
-    z-index: 100;
+    z-index: 2;
     margin-left: 100px;
   }
 `;
