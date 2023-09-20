@@ -14,13 +14,13 @@ export const getRandomColor = () => {
 };
 
 export const getRandomLocaTop = () => {
-  const topLoca = Math.floor(Math.random() * 41) + 40;
+  const topLoca = Math.floor(Math.random() * 81) + 5;
 
   return topLoca;
 };
 
 export const getRandomLocaLeft = () => {
-  const leftLoca = Math.floor(Math.random() * 50) + 10;
+  const leftLoca = Math.floor(Math.random() * 81);
 
   return leftLoca;
 };
