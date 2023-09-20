@@ -77,6 +77,21 @@ const HouseContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  transform-origin: 50% 0%;
+  animation-name: shake;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+
+  @keyframes shake {
+    0%,
+    100% {
+      transform: rotate(-5deg);
+    }
+    50% {
+      transform: rotate(5deg);
+    }
+  }
 
   .houseImg {
     width: 20%;
