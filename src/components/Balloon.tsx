@@ -56,9 +56,12 @@ const BalloonItem = styled.div<BalloonInter>`
   border-radius: 48% 48% 50% 50%;
   border: 1.5px solid black;
   opacity: 0.9;
+  /* 화면의 절반보다 x좌표 값이 작으면 -20도 회전 OR 20도 회전 */
   transform: rotateZ(
     ${({ halfWidth, xCoord }) => (xCoord! < halfWidth ? "-20deg" : "20deg")}
   );
+
+  /* 집을 클릭하여 추가된 풍선에 적용되는 애니메이션 */
   animation: ${({ isAdd, top, left }) =>
     isAdd &&
     css`
@@ -127,6 +130,7 @@ function Balloon({
     setIsShow(!isShow);
   };
 
+  // 해당 요소의 x 좌표 얻기 위함 => halfWidth 와 함께 BalloonItem 컴포넌트에서 사용
   useEffect(() => {
     const element = elementRef.current;
     if (element) {
@@ -135,10 +139,12 @@ function Balloon({
     }
   }, [[]]);
 
+  // 화면 전체의 절반 크기
   const halfWidth = window.innerWidth / 2;
 
   return (
     <div>
+      {/* isShow 가 true일 때 생성되기에 풍선 터지는 효과 가능 */}
       {isShow && (
         <BalloonItem
           ref={elementRef}
@@ -151,6 +157,7 @@ function Balloon({
           left={left}
           onClick={() => handleDelete(balloonNum)}
         >
+          {/* 여러 풍선 section 중 6,7번만 last prop 전달 */}
           {last && <Rope />}
         </BalloonItem>
       )}

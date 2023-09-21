@@ -99,7 +99,7 @@ const HouseContainer = styled.div<FlyInter>`
 
   @keyframes drop {
     to {
-      transform: translateY(100%);
+      transform: translateY(1000%);
     }
   }
 
@@ -141,7 +141,9 @@ function App() {
   const number6 = Array(6).fill(0);
   const number7 = Array(4).fill(0);
 
+  // 연결된 줄이 끊어졌을 시 isFly true로 변경 함수
   const handleBalloonPop = (number: number) => {
+    // 줄이 있는 풍선임을 확인하고 pop
     if (number === 6) {
       number6.pop();
     } else if (number === 7) {
@@ -173,6 +175,8 @@ function App() {
               />
             ))}
 
+        {/* 기본 풍선들 */}
+        {/* 총 7개의 section으로 나눔 */}
         <BalloonsContainer isFly={isFly}>
           <div className="balloons1">
             {Array(19)
@@ -275,6 +279,8 @@ function App() {
             className="houseImg"
             onClick={handleAddBalloon}
           />
+
+          {/* 집 */}
         </HouseContainer>
       </div>
     </div>

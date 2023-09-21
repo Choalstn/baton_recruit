@@ -15,7 +15,7 @@ const CloudStyle = styled.img<CloudInter>`
   position: relative;
   top: ${({ top }) => (top ? ` ${top}%` : "-20px")};
   z-index: 0;
-  left: ${({ left }) => left && ` ${left - 20}%`};
+  left: ${({ left }) => left && ` ${left}%`};
   animation: moveClouds 10s linear infinite;
   opacity: 0.8;
 
@@ -32,6 +32,7 @@ const CloudStyle = styled.img<CloudInter>`
 function Cloud() {
   const [clouds, setClouds] = useState<{ top: number; left: number }[]>([]);
 
+  // 구름 생성 & 삭제
   useEffect(() => {
     const createCloud = () => {
       const top = getRandomLocaTop();
@@ -39,24 +40,18 @@ function Cloud() {
       setClouds((prevClouds) => [...prevClouds, { top, left }]);
     };
 
+    // 5초 간격으로 구름 생성
     const cloudInterval = setInterval(() => {
-      createCloud();
+      if (clouds.length < 20) {
+        createCloud();
+      }
     }, 5000);
 
-    const removeOutOfScreenClouds = () => {
-      setClouds((prevClouds) => {
-        return prevClouds.filter((cloud) => cloud.top <= 100);
-      });
-    };
-
-    const removeCloudInterval = setInterval(() => {
-      removeOutOfScreenClouds();
-    }, 20000);
+    // clouds 배열이 변경될 때마다 clearInterval 호출하여 이전 인터벌 정리
     return () => {
       clearInterval(cloudInterval);
-      clearInterval(removeCloudInterval);
     };
-  }, []);
+  }, [clouds]);
 
   return (
     <div>
