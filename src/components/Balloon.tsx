@@ -8,7 +8,7 @@ import {
   getRandomColor,
   getRandomBalloonTop,
   getRandomBalloonLeft,
-} from "../utill/getRandom";
+} from "../hook/useGetRandom";
 
 interface BalloonInter {
   balloonColor: string;

@@ -3,7 +3,7 @@
 import { styled } from "styled-components";
 import { useEffect, useState } from "react";
 import CloudImg from "../assets/cloud.png";
-import { getRandomLocaLeft, getRandomLocaTop } from "../utill/getRandom";
+import { getRandomLocaLeft, getRandomLocaTop } from "../hook/useGetRandom";
 
 interface CloudInter {
   top: number;
